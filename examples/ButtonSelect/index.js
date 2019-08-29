@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-
-import { ButtonSelect } from '../../src';
+import { ButtonSelect } from 'my-awesome-components';
 
 class ExampleOne extends Component {
   render() {

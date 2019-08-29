@@ -1,13 +1,14 @@
 {
   "name": "my-awesome-components",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.3",
+  "main": "src/index.js",
   "license": "MIT",
   "scripts": {},
   "dependencies": {
+    "eslint-config-prettier": "^6.0.0",
     "lodash": "^4.17.14",
-    "prop-types": "^15.7.2",
-    "eslint-config-prettier": "^6.0.0"
+    "my-awesome-components": "^1.0.2",
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -24,7 +25,6 @@
     "react": "16.4.1",
     "react-native": "^0.60.4"
   },
-  "optionalDependencies": {},
   "peerDependencies": {
     "react": ">=16.4.1",
     "react-native": ">=0.56.0"

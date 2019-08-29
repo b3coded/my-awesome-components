@@ -4,13 +4,23 @@ import {
   TouchableOpacity,
   Platform,
   View,
+  Text,
   TouchableNativeFeedback,
   StyleSheet
 } from 'react-native';
 
 class ButtonSelect extends Component {
   render() {
-    return <View />;
+    return (
+      <View>
+        <TouchableOpacity>
+          <Text>Exemplo</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text>Exemplo</Text>
+        </TouchableOpacity>
+      </View>
+    );
   }
 }
 
