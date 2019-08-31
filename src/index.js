@@ -1,3 +1,1 @@
-import ButtonSelect from './components/ButtonSelect';
-
-export { ButtonSelect };
+export {default as ButtonSelect} from './components/ButtonSelect';
