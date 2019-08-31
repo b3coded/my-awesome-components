@@ -1,9 +1,29 @@
 {
   "name": "my-awesome-components",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "src/index.js",
+  "description": "Awesome React Native Components",
   "license": "MIT",
-  "scripts": {},
+  "private": false,
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://b3coded/my-awesome-components"
+  },
+  "author": "João Alves",
+  "keywords": [
+    "react-native",
+    "react-component",
+    "react-native-component",
+    "react",
+    "react native",
+    "mobile",
+    "ios",
+    "android",
+    "ui",
+    "select",
+    "button"
+  ],
   "dependencies": {
     "eslint-config-prettier": "^6.0.0",
     "lodash": "^4.17.14",
