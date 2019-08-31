@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-export default function ButtonSelect({
+export default function MultiButtonSelect({
   onChange = () => {},
   buttons = [],
   containerStyle = {},
@@ -21,16 +21,21 @@ export default function ButtonSelect({
   inactiveColor,
   scroll = true
 }) {
-  const [buttonSelected, setButtonSelected] = useState(0);
+  const [selectedItems, setSelectedItems] = useState([]);
 
-  function handleChange(i = 0) {
-    if (buttonSelected === i) return;
-    setButtonSelected(i);
+  async function handleChange(i = 0) {
+    const found = await selectedItems.filter(e => e === i);
+
+    if (found.length > 0) {
+      setSelectedItems([...(await selectedItems.filter(e => e !== i))]);
+    } else {
+      setSelectedItems([...selectedItems, i]);
+    }
   }
 
   useEffect(() => {
-    onChange(buttonSelected);
-  }, [buttonSelected]);
+    onChange(selectedItems);
+  }, [selectedItems]);
 
   return (
     <View>
@@ -41,8 +46,10 @@ export default function ButtonSelect({
         contentContainerStyle={[styles.content]}
         showsHorizontalScrollIndicator={false}
       >
-        {buttons.map((item, i) => {
-          const selected = i === buttonSelected;
+        {buttons.map(item => {
+          const selected =
+            selectedItems.filter(e => e === item.id).length !== 0;
+
           return (
             <TouchableOpacity
               style={[
@@ -56,7 +63,7 @@ export default function ButtonSelect({
               ]}
               activeOpacity={0.8}
               key={item.id}
-              onPress={() => handleChange(i)}
+              onPress={() => handleChange(item.id)}
             >
               <Text
                 style={[
@@ -75,7 +82,7 @@ export default function ButtonSelect({
   );
 }
 
-ButtonSelect.propTypes = {
+MultiButtonSelect.propTypes = {
   activeColor: PropTypes.string.isRequired,
   inactiveColor: PropTypes.string.isRequired,
   buttons: PropTypes.arrayOf(
