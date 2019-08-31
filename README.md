@@ -5,7 +5,7 @@
 ## Install
 
 - Run `npm install my-awesome-components` or `ỳarn add my-awesome-components`
-- See Usages [here]()
+- See Usages [here](https://github.com/b3coded/my-awesome-components/blob/master/examples/README.md)
 
 ## Components
 
