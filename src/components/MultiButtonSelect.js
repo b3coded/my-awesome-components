@@ -5,16 +5,16 @@ import {
   TouchableOpacity,
   Text,
   StyleSheet,
-  ViewPropTypes
+  ViewPropTypes,
+  ScrollView
 } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 
 export default function MultiButtonSelect({
-  onChange = () => {},
-  buttons = [],
-  containerStyle = {},
-  buttonStyle = {},
-  textStyle = {},
+  onChange,
+  buttons,
+  containerStyle,
+  buttonStyle,
+  textStyle,
   activeBackground,
   inactiveBackground,
   activeColor,
@@ -24,10 +24,10 @@ export default function MultiButtonSelect({
   const [selectedItems, setSelectedItems] = useState([]);
 
   async function handleChange(i = 0) {
-    const found = await selectedItems.filter(e => e === i);
+    const found = selectedItems.filter(e => e === i);
 
     if (found.length > 0) {
-      setSelectedItems([...(await selectedItems.filter(e => e !== i))]);
+      setSelectedItems([...selectedItems.filter(e => e !== i)]);
     } else {
       setSelectedItems([...selectedItems, i]);
     }
@@ -83,17 +83,41 @@ export default function MultiButtonSelect({
 }
 
 MultiButtonSelect.propTypes = {
+  /** @type {String} Text Color when active */
   activeColor: PropTypes.string.isRequired,
+
+  /** @type {String} Text Color when inactive */
   inactiveColor: PropTypes.string.isRequired,
+
+  /** @type {String} Background Color when active */
+  activeBackground: PropTypes.string.isRequired,
+
+  /** @type {String} Background Color when inactive */
+  inactiveBackground: PropTypes.string.isRequired,
+
+  /** @type {Array} Array of Buttons */
   buttons: PropTypes.arrayOf(
     PropTypes.shape({
+      /** @type {Any} Id of a button */
       id: PropTypes.any.isRequired,
+
+      /** @type {String} Button Text */
       text: PropTypes.string.isRequired
     })
   ).isRequired,
+
+  /** @type {function} Function triggered when button is pressed */
+  /** @returns {Array} A array of selected buttons */
   onChange: PropTypes.func.isRequired,
+
+  /** @type {Object} Custom Styles for each button */
   buttonStyle: PropTypes.objectOf(ViewPropTypes.style),
-  containerStyle: PropTypes.objectOf(ViewPropTypes.style)
+
+  /** @type {Object} Custom Styles for container */
+  containerStyle: PropTypes.objectOf(ViewPropTypes.style),
+
+  /** @type {Object} Custom Styles for button text */
+  textStyle: PropTypes.objectOf(ViewPropTypes.style)
 };
 
 const styles = StyleSheet.create({
