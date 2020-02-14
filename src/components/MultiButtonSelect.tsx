@@ -1,15 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import {
   View,
   TouchableOpacity,
   Text,
   StyleSheet,
-  ViewPropTypes,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 
-export default function MultiButtonSelect({
+type Props = {
+  onChange: (value: any) => any;
+  buttons: any;
+  containerStyle: any;
+  buttonStyle: any;
+  textStyle: any;
+  activeBackground: any;
+  inactiveBackground: any;
+  activeColor: any;
+  inactiveColor: any;
+  scroll: boolean;
+};
+
+const MultiButtonSelect: React.FC<Props> = ({
   onChange,
   buttons,
   containerStyle,
@@ -19,9 +30,9 @@ export default function MultiButtonSelect({
   inactiveBackground,
   activeColor,
   inactiveColor,
-  scroll = true
-}) {
-  const [selectedItems, setSelectedItems] = useState([]);
+  scroll = true,
+}) => {
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
   async function handleChange(i = 0) {
     const found = selectedItems.filter(e => e === i);
@@ -46,7 +57,7 @@ export default function MultiButtonSelect({
         contentContainerStyle={[styles.content]}
         showsHorizontalScrollIndicator={false}
       >
-        {buttons.map(item => {
+        {buttons.map((item: any) => {
           const selected =
             selectedItems.filter(e => e === item.id).length !== 0;
 
@@ -58,8 +69,8 @@ export default function MultiButtonSelect({
                 {
                   backgroundColor: selected
                     ? activeBackground
-                    : inactiveBackground
-                }
+                    : inactiveBackground,
+                },
               ]}
               activeOpacity={0.8}
               key={item.id}
@@ -69,7 +80,7 @@ export default function MultiButtonSelect({
                 style={[
                   styles.text,
                   textStyle,
-                  { color: selected ? activeColor : inactiveColor }
+                  { color: selected ? activeColor : inactiveColor },
                 ]}
               >
                 {item.text}
@@ -80,66 +91,30 @@ export default function MultiButtonSelect({
       </ScrollView>
     </View>
   );
-}
-
-MultiButtonSelect.propTypes = {
-  /** @type {String} Text Color when active */
-  activeColor: PropTypes.string.isRequired,
-
-  /** @type {String} Text Color when inactive */
-  inactiveColor: PropTypes.string.isRequired,
-
-  /** @type {String} Background Color when active */
-  activeBackground: PropTypes.string.isRequired,
-
-  /** @type {String} Background Color when inactive */
-  inactiveBackground: PropTypes.string.isRequired,
-
-  /** @type {Array} Array of Buttons */
-  buttons: PropTypes.arrayOf(
-    PropTypes.shape({
-      /** @type {Any} Id of a button */
-      id: PropTypes.any.isRequired,
-
-      /** @type {String} Button Text */
-      text: PropTypes.string.isRequired
-    })
-  ).isRequired,
-
-  /** @type {function} Function triggered when button is pressed */
-  /** @returns {Array} A array of selected buttons */
-  onChange: PropTypes.func.isRequired,
-
-  /** @type {Object} Custom Styles for each button */
-  buttonStyle: PropTypes.objectOf(ViewPropTypes.style),
-
-  /** @type {Object} Custom Styles for container */
-  containerStyle: PropTypes.objectOf(ViewPropTypes.style),
-
-  /** @type {Object} Custom Styles for button text */
-  textStyle: PropTypes.objectOf(ViewPropTypes.style)
 };
+
+export default MultiButtonSelect;
 
 const styles = StyleSheet.create({
   content: {
-    minWidth: '100%'
+    minWidth: '100%',
   },
   container: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     flexGrow: 0,
-    marginVertical: 5
+    marginVertical: 5,
   },
   button: {
     margin: 5,
     borderWidth: 1,
     borderColor: '#000',
     padding: 10,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   text: {
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 18
-  }
+    fontSize: 18,
+  },
 });
