@@ -6,9 +6,7 @@ export type ButtonVariant =
   | 'default'
   | 'success'
   | 'warn'
-  | 'danger'
-  | 'light'
-  | 'dark';
+  | 'danger';
 
 export type ButtonStyleProp = {[x in ButtonVariant]: StyleProp<ViewStyle>};
 

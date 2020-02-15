@@ -1,15 +1,15 @@
 // Colors
-type Color = {
+type BaseColor = {
   hex: string;
   rgb: string;
 };
 type Colors = {
-  primary: Color;
-  secondary: Color;
-  disabled: Color;
-  danger: Color;
-  success: Color;
-  warn: Color;
+  primary: BaseColor;
+  secondary: BaseColor;
+  disabled: BaseColor;
+  danger: BaseColor;
+  success: BaseColor;
+  warn: BaseColor;
 };
 
 // Sizes

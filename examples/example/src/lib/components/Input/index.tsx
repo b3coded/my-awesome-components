@@ -10,6 +10,7 @@ const Input: React.FC<InputProps> = ({
   border,
   IconLeft,
   IconRight,
+  style,
   ...props
 }) => {
   const styles = makeStyles({type, border});
@@ -17,7 +18,7 @@ const Input: React.FC<InputProps> = ({
   return (
     <View style={styles.inputContainer}>
       {IconLeft && <IconLeft />}
-      <TextInput style={[styles.root]} {...props} />
+      <TextInput style={[styles.root, style]} {...props} />
       {IconRight && <IconRight />}
     </View>
   );

@@ -1,7 +1,12 @@
 import React, {useContext, createContext, Component} from 'react';
-import {Props, State} from './ThemeProvider.props';
+import {Props, State, ThemeContextProps} from './ThemeProvider.props';
+import * as themes from '../themes';
 
-export const ThemeContext = createContext({});
+export const ThemeContext = createContext<ThemeContextProps>({
+  currentTheme: 'Dark',
+  theme: themes.Dark,
+  toggleTheme: () => {},
+});
 
 export function useTheme() {
   return useContext(ThemeContext);
@@ -12,22 +17,23 @@ export default class ThemeProvider extends Component<Props, State> {
     super(props);
 
     this.state = {
-      theme: {},
-      currentTheme: 'dark',
+      theme: themes.Light,
+      currentTheme: 'Light',
     };
   }
 
   componentDidMount() {}
 
   toggleTheme = () => {
-    const newTheme = this.state.currentTheme === 'dark' ? 'light' : 'dark';
-    this.setState({currentTheme: newTheme});
+    const newTheme = this.state.currentTheme === 'Dark' ? 'Light' : 'Dark';
+    this.setState({currentTheme: newTheme, theme: themes[newTheme]});
   };
 
   render() {
     const {children} = this.props;
     return (
-      <ThemeContext.Provider value={this.state}>
+      <ThemeContext.Provider
+        value={{...this.state, toggleTheme: this.toggleTheme}}>
         {children}
       </ThemeContext.Provider>
     );

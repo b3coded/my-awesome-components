@@ -1,69 +1,69 @@
-import { StyleSheet } from "react-native"
-import DarkTheme from "my-awesome-components/src/themes/Dark"
-import { ButtonMakeStyles,ButtonStyleProp } from "./props";
+import {StyleSheet} from 'react-native';
+import {ButtonMakeStyles, ButtonStyleProp} from './props';
+import {useTheme} from '../../core/ThemeProvider';
+import {lighten} from 'polished';
 
+export const reservedButtonColors = [
+  'primary',
+  'warn',
+  'danger',
+  'success',
+  'light',
+  'dark',
+];
 
-export const reservedButtonColors = ['primary', 'warn', 'danger', 'success', 'light', 'dark'];
-
-const buttonStyles: ButtonStyleProp = {
+const buttonStyles: (theme: any) => ButtonStyleProp = theme => ({
   primary: {
-    backgroundColor: DarkTheme.primary,
+    backgroundColor: theme.primary.color,
   },
   outline: {
-    backgroundColor: DarkTheme.background,
+    backgroundColor: lighten(0.5, theme.background.color),
   },
   success: {
-    backgroundColor: DarkTheme.successDefault,
-    borderColor: DarkTheme.successDark,
+    backgroundColor: theme.success.color,
+    borderColor: theme.success.color,
   },
   danger: {
-    backgroundColor: DarkTheme.dangerDefault,
-    borderColor: DarkTheme.dangerDark,
+    backgroundColor: theme.danger.color,
+    borderColor: theme.danger.color,
   },
   warn: {
-    backgroundColor: DarkTheme.warnDefault,
-    borderColor: DarkTheme.warnDark,
+    backgroundColor: theme.warn.color,
+    borderColor: theme.warn.color,
   },
   default: {
-    backgroundColor: DarkTheme.background,
-    borderColor: DarkTheme.disabled,
+    backgroundColor: lighten(0.5, theme.background.color),
+    borderColor: theme.disabled.color,
+    opacity: 1,
   },
-  light: {
-    backgroundColor: DarkTheme.light,
-    borderColor: DarkTheme.light,
-  },
-  dark: {
-    backgroundColor: DarkTheme.dark,
-    borderColor: DarkTheme.dark,
-  }
-};
+});
 
 export default (props: ButtonMakeStyles) => {
+  const {variant} = props;
+  const {theme} = useTheme();
 
-    const {variant} = props;
+  const baseButtonStyles = buttonStyles(theme)[variant || 'default']?.valueOf();
+  return StyleSheet.create({
+    root: {
+      borderColor: theme.primary.color,
+      borderWidth: 2,
+      borderRadius: 8,
+      alignSelf: 'flex-start',
+      paddingVertical: 10,
+      paddingHorizontal: 20,
 
-    const baseButtonStyles = buttonStyles[variant || 'default']?.valueOf();
-    return StyleSheet.create({
-        root: {
-            borderColor: DarkTheme.primary,
-            borderWidth: 1,
-            borderRadius: 8,
-            alignSelf: 'flex-start',
-            paddingVertical: 10,
-            paddingHorizontal: 20,
-            
-            // Shadow
-            shadowColor: DarkTheme.primary,
-            shadowOffset: {
-              width: 10,
-              height: 2,
-            },
-            shadowOpacity: 0.58,
-            shadowRadius: 16.0,
-            elevation: 8,
+      // Shadow
+      shadowColor: theme.primary.color,
+      shadowOffset: {
+        width: 10,
+        height: 2,
+      },
+      shadowOpacity: 0.58,
+      shadowRadius: 16.0,
+      elevation: 8,
 
-            marginVertical: 5,
-            ...baseButtonStyles,
-          },
-    })
-}
+      marginVertical: 5,
+      ...baseButtonStyles,
+    },
+  });
+};

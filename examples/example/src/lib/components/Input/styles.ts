@@ -5,6 +5,8 @@ import {
   InputMakeStyles,
 } from './props';
 import {StyleSheet} from 'react-native';
+import {lighten} from 'polished';
+import {useTheme} from '../../core/ThemeProvider';
 
 export const reservedInputColors = [
   'primary',
@@ -66,12 +68,15 @@ export default (props: InputMakeStyles) => {
   const baseBorderStyles = borderStyles[border || 'default']?.valueOf();
   const basePadding = 8;
 
+  const {theme} = useTheme();
+
   return StyleSheet.create({
     root: {
       //  Flex
       flex: 1,
 
-      ...baseInputStyles,
+      // ...baseInputStyles,
+      color: theme.background.text,
     },
     inputContainer: {
       flexDirection: 'row',
@@ -79,6 +84,7 @@ export default (props: InputMakeStyles) => {
       marginBottom: 15,
       paddingHorizontal: basePadding,
       borderRadius: basePadding,
+      backgroundColor: lighten(0.4, theme.background.color),
       ...baseBorderStyles,
     },
     inputIconLeft: {

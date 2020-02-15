@@ -1,4 +1,4 @@
-const DarkTheme = {
+const LightTheme = {
   primary: {
     color: '#BB86FC',
     text: '#000000',
@@ -29,13 +29,13 @@ const DarkTheme = {
   },
 
   background: {
-    color: '#121212',
-    text: '#FFFFFF',
+    color: '#FFFFFF',
+    text: '#121212',
   },
   surface: {
-    color: '#121212',
-    text: '#FFFFFF',
+    color: '#FFFFFF',
+    text: '#121212',
   },
 };
 
-export default DarkTheme;
+export default LightTheme;

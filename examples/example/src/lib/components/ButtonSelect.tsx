@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   TouchableOpacity,
@@ -50,8 +50,7 @@ const ButtonSelect: React.FC<Props> = ({
         scrollEnabled={scroll}
         style={[styles.container, containerStyle]}
         contentContainerStyle={[styles.content]}
-        showsHorizontalScrollIndicator={false}
-      >
+        showsHorizontalScrollIndicator={false}>
         {buttons.map((item: any, i: number) => {
           const selected = i === buttonSelected;
           return (
@@ -67,15 +66,13 @@ const ButtonSelect: React.FC<Props> = ({
               ]}
               activeOpacity={0.8}
               key={item.id}
-              onPress={() => handleChange(i)}
-            >
+              onPress={() => handleChange(i)}>
               <Text
                 style={[
                   styles.text,
                   textStyle,
-                  { color: selected ? activeColor : inactiveColor },
-                ]}
-              >
+                  {color: selected ? activeColor : inactiveColor},
+                ]}>
                 {item.text}
               </Text>
             </TouchableOpacity>

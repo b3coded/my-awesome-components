@@ -1,4 +1,4 @@
-const DarkTheme = {
+const Colors = {
   primary: {
     color: '#BB86FC',
     text: '#000000',
@@ -38,4 +38,10 @@ const DarkTheme = {
   },
 };
 
-export default DarkTheme;
+const Sizes = {
+  radius: {
+    default: 8,
+  },
+};
+
+export default {Colors, Sizes};
