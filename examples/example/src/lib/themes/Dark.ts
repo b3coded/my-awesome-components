@@ -25,7 +25,7 @@ const DarkTheme = {
   },
   disabled: {
     color: '#A0A4A8',
-    text: '#000000',
+    text: '#121212',
   },
 
   background: {

@@ -17,11 +17,12 @@ const spinnerStyles: SpinnerColorStylesProp = {
 export default (props: SpinnerMakeStyles) => {
   const {color} = props;
   const baseSpinnerStyles = spinnerStyles[color || 'default']?.valueOf();
-  const basePadding = 8;
+  const basePadding = 4;
 
   return StyleSheet.create({
     root: {
       // backgroundColor: DarkTheme.dangerDefault,
+      padding: basePadding,
     },
   });
 };

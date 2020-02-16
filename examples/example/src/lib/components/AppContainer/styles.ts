@@ -8,6 +8,9 @@ const makeStyles = (props: any) => {
     root: {
       backgroundColor: theme.background.color,
     },
+    container: {
+      flex: 1,
+    },
   });
 };
 export default makeStyles;

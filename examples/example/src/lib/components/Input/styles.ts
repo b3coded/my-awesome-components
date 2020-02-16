@@ -84,7 +84,7 @@ export default (props: InputMakeStyles) => {
       marginBottom: 15,
       paddingHorizontal: basePadding,
       borderRadius: basePadding,
-      backgroundColor: lighten(0.4, theme.background.color),
+      backgroundColor: theme.background.color,
       ...baseBorderStyles,
     },
     inputIconLeft: {

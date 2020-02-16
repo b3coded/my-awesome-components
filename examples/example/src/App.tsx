@@ -1,6 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, StatusBar, View} from 'react-native';
-import {Button, Typography, Badge, Input, Spinner, AppContainer} from './lib';
+import {
+  Button,
+  Typography,
+  Badge,
+  Input,
+  Spinner,
+  AppContainer,
+  AppBar,
+} from './lib';
 import {useTheme} from './lib/core/ThemeProvider';
 
 const App = () => {
@@ -11,7 +19,17 @@ const App = () => {
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
 
-      <AppContainer style={styles.scroll}>
+      <AppContainer
+        style={styles.scroll}
+        AppBar={
+          <AppBar>
+            <Typography type="h1" children="Header" />
+            <Button
+              content="Toggle Theme"
+              onPress={() => theme.toggleTheme()}
+            />
+          </AppBar>
+        }>
         <View style={styles.section}>
           <Typography type="h2" children="Buttons" />
 
@@ -50,6 +68,7 @@ const App = () => {
             <Typography type="button" children="button" />
             <Typography type="default" children="default" />
           </View>
+
           <Typography
             type="h3"
             style={styles.sectionSubtitle}
@@ -105,6 +124,7 @@ const App = () => {
 
           <View style={styles.sectionContent}>
             <Input placeholder="Default" />
+            <Input placeholder="With Label" label="Label" />
             <Input placeholder="Border bottom" border="bottom" />
             <Input placeholder="No border" border="none" />
             <Input
@@ -131,24 +151,27 @@ const App = () => {
             style={styles.sectionSubtitle}
             children="1. Colors"
           />
-
           <View style={styles.sectionContent}>
             <Spinner color="disabled" />
             <Spinner color="primary" />
-            <Spinner color="dark" />
-            <Spinner color="light" />
             <Spinner color="danger" />
             <Spinner color="warn" />
             <Spinner color="success" />
-            <Spinner color="default" />
+          </View>
+
+          <Typography
+            type="h3"
+            style={styles.sectionSubtitle}
+            children="2. Sizes"
+          />
+          <View style={styles.sectionContent}>
+            <Spinner color="primary" size="small" />
+            <Spinner color="primary" size="large" />
+            {/* Custom size */}
+            <Spinner color="primary" size={60} />
           </View>
         </View>
       </AppContainer>
-
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Header</Text>
-        <Button content="Toggle Theme" onPress={() => theme.toggleTheme()} />
-      </View>
     </View>
   );
 };
@@ -160,7 +183,6 @@ const makeStyles = (theme: any) =>
     },
     scroll: {
       padding: 10,
-      paddingTop: 90,
       paddingBottom: 20,
     },
     header: {

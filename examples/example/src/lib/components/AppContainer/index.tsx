@@ -6,14 +6,18 @@ import {AppContainerProps} from './props';
 const AppContainer: React.FC<AppContainerProps> = ({
   children,
   style,
+  AppBar,
   ...props
 }) => {
   const styles = makeStyles({});
 
   return (
-    <ScrollView style={[styles.root, style]} {...props}>
-      {children}
-    </ScrollView>
+    <View style={styles.container}>
+      {AppBar}
+      <ScrollView style={[styles.root, style]} {...props}>
+        {children}
+      </ScrollView>
+    </View>
   );
 };
 
