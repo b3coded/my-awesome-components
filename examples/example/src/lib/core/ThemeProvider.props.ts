@@ -1,5 +1,7 @@
-export type Props = {};
-export type State = {theme: any; currentTheme: 'Dark' | 'Light'};
-export type ThemeContextProps = State & {
+export type ThemeProviderProps = {
+  theme?: any;
+};
+export type ThemeProviderState = {theme: any; currentTheme: 'Dark' | 'Light'};
+export type ThemeContextProps = ThemeProviderState & {
   toggleTheme: () => void;
 };

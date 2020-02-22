@@ -35,13 +35,15 @@ const ButtonSelect: React.FC<Props> = ({
   const [buttonSelected, setButtonSelected] = useState(0);
 
   function handleChange(i = 0) {
-    if (buttonSelected === i) return;
+    if (buttonSelected === i) {
+      return;
+    }
     setButtonSelected(i);
   }
 
   useEffect(() => {
     onChange(buttonSelected);
-  }, [buttonSelected]);
+  }, [buttonSelected, onChange]);
 
   return (
     <View>

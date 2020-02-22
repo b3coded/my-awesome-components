@@ -1,5 +1,9 @@
 import React, {useContext, createContext, Component} from 'react';
-import {Props, State, ThemeContextProps} from './ThemeProvider.props';
+import {
+  ThemeProviderProps,
+  ThemeProviderState,
+  ThemeContextProps,
+} from './ThemeProvider.props';
 import * as themes from '../themes';
 
 export const ThemeContext = createContext<ThemeContextProps>({
@@ -12,8 +16,11 @@ export function useTheme() {
   return useContext(ThemeContext);
 }
 
-export default class ThemeProvider extends Component<Props, State> {
-  constructor(props: Props) {
+export default class ThemeProvider extends Component<
+  ThemeProviderProps,
+  ThemeProviderState
+> {
+  constructor(props: ThemeProviderProps) {
     super(props);
 
     this.state = {
@@ -31,9 +38,9 @@ export default class ThemeProvider extends Component<Props, State> {
 
   render() {
     const {children} = this.props;
+    const {state, toggleTheme} = this;
     return (
-      <ThemeContext.Provider
-        value={{...this.state, toggleTheme: this.toggleTheme}}>
+      <ThemeContext.Provider value={{...state, toggleTheme}}>
         {children}
       </ThemeContext.Provider>
     );

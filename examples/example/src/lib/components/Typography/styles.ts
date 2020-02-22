@@ -105,8 +105,8 @@ const textStyles: TextStylesProp = {
 };
 
 const makeStyles = (props: TypographyMakeStyles) => {
-  const {type, color: customColor} = props;
-  const baseTextStyles = textStyles[type || 'default']?.valueOf();
+  const {variant, color: customColor} = props;
+  const baseTextStyles = textStyles[variant || 'default']?.valueOf();
   const {theme} = useTheme();
 
   let color: string = theme.background.text;

@@ -12,8 +12,6 @@ type Colors = {
   warn: BaseColor;
 };
 
-// Sizes
-
 export type ThemeProps = {
   colors: Colors;
 };

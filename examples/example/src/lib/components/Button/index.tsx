@@ -4,21 +4,24 @@ import Typography from 'my-awesome-components/src/components/Typography';
 
 import makeStyles from './styles';
 import {ButtonProps} from './props';
+import {useTheme} from '../../core/ThemeProvider';
 
-const Button: React.FC<ButtonProps> = ({content, variant, ...props}) => {
+const Button: React.FC<ButtonProps> = ({children, variant, ...props}) => {
   const styles = makeStyles({variant});
 
-  const isString = typeof content === 'string';
+  const theme = useTheme().currentTheme;
+  const isString = typeof children === 'string';
 
-  let Content = content;
+  let Content = children;
 
   if (isString) {
     const isLight =
-      variant &&
-      ['primary', 'warn', 'danger', 'success', 'dark'].find(e => e === variant);
+      (variant &&
+        ['primary', 'warn', 'danger', 'success'].find(e => e === variant)) ||
+      theme === 'Dark';
     Content = (
       <Typography type="button" color={isLight ? 'light' : 'default'}>
-        {content}
+        {children}
       </Typography>
     );
   }
@@ -27,7 +30,7 @@ const Button: React.FC<ButtonProps> = ({content, variant, ...props}) => {
     <TouchableOpacity
       style={[styles.root]}
       children={Content}
-      activeOpacity={0.8}
+      activeOpacity={0.6}
       {...props}
     />
   );

@@ -5,12 +5,12 @@ import {TypographyProps} from './props';
 import makeStyles from './styles';
 
 const Typography: React.FC<TypographyProps> = ({
-  type,
+  variant,
   color,
   style,
   ...props
 }) => {
-  const styles = makeStyles({type, color});
+  const styles = makeStyles({variant, color});
 
   return <Text style={[styles.text, style]} {...props} />;
 };

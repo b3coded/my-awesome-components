@@ -1,6 +1,6 @@
 import {TextProps, TextStyle, StyleProp} from 'react-native';
 
-export type TextType =
+export type TextVariant =
   | 'h1'
   | 'h2'
   | 'h3'
@@ -19,10 +19,10 @@ export type TextType =
 
 export type TextColor = 'primary' | 'secondary' | 'disabled' | 'default';
 
-export type TextStylesProp = {[x in TextType]: StyleProp<TextStyle>};
+export type TextStylesProp = {[x in TextVariant]: StyleProp<TextStyle>};
 
 export type TypographyMakeStyles = {
-  type?: TextType;
+  variant?: TextVariant;
   color?: TextColor;
 };
 

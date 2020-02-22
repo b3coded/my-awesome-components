@@ -16,6 +16,5 @@ export type ButtonMakeStyles = {
 
 export interface ButtonProps extends TouchableOpacityProps {
   variant?: ButtonVariant;
-  content: React.FC | React.ReactNode | string;
   fullWidth?: boolean;
 }
